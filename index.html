@@ -1,0 +1,871 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<title>教育大数据分析平台 - </title>
+<meta http-equiv="X-UA-Compatible" content="IE=6" />
+
+<script type='text/javascript' src='/tqweb/js/jquery2.js'></script>
+<link href="/tqweb/css/css.css" rel="stylesheet" type="text/css">
+<link href="/tqweb/css/report_main.css" rel="stylesheet" type="text/css">
+
+<!-- 
+<link href="/tqweb/css/report_header.css" rel="stylesheet" type="text/css">
+<link href="/tqweb/css/report_footer.css" rel="stylesheet" type="text/css">
+ -->
+
+
+
+
+<script src="/tqweb/js/report_sprymenu.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function static_report(){
+		window.open ("/tqweb/report/staticreportmaker/StaticReportMarker.a","newwindow","height=100,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no");
+	}
+		
+	function openWindows(){
+		var obj = window.open('/tqweb/demo/DemoAction.a?doShowLoginList&r='+Math.random(),'浏览登录历史',"height=600,width=400,status=no,toolbar=no,menubar=no,scrollbars=yes,location=no");
+		if (obj != null){
+			obj.focus();
+			obj.title='浏览登录历史';
+		}
+	}
+	
+	var actionSrc = null;
+	actionSrc="/tqweb/report/NewStudentReport.a?doShowStudentReport"
+	
+	
+	
+	function viewReport(){
+	
+		//document.forms(0).action = actionSrc;
+		$("form").attr("action",actionSrc);
+		$("form").submit();
+		//document.forms(0).submit();
+	}
+</script>
+
+<script type='text/javascript' src='/tqweb/dwr/engine.js'></script>
+<script type='text/javascript' src='/tqweb/dwr/util.js'></script>
+<script type='text/javascript' src='/tqweb/dwr/interface/SelectUserUtil.js'></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/tqweb/css/report.css" rel="stylesheet" type="text/css">
+<link href="/tqweb/css/css.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function viewReportTwo()
+{
+	var xx = document.getElementById("testTwo");
+	xx.submit();
+}
+</script>
+
+
+<script type="text/javascript">
+
+function showReport(){
+	var repForm = document.getElementById("repForm");
+	repForm.action = "/tqweb/report/StudentReport.a?showStudentReport";
+	repForm.submit();
+}
+
+
+function showSubjectReport(sbjId){
+	document.getElementById("reportSubjectId").value = sbjId;
+	var repForm = document.getElementById("repForm");
+	repForm.action = "/tqweb/report/StudentReport.a?showSubjectReport";
+	repForm.submit();
+}
+</script>
+<script type="text/javascript">
+
+
+	window.onload = function(){
+		change_div_position();
+	}
+	
+	function change_div_position(){
+		if(null != document.getElementById("right_div")){
+			var screen_r = (document.body.scrollWidth + 970)/2-65;
+			document.getElementById("right_div").style.top = document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop+"px";
+			document.getElementById("right_div").style.left = (document.documentElement.scrollLeft + screen_r)+"px";
+		}
+	}
+
+	function fk_overcss(obj){
+		obj.src="/tqweb/images/fk_01.gif";
+	}
+	function fk_movecss(obj){
+		obj.src="/tqweb/images/ji_02.gif";
+	}
+	
+	function ctb_overcss(obj){
+		obj.src="/tqweb/images/ctb_01.jpg";
+	}
+	function ctb_movecss(obj){
+		obj.src="/tqweb/images/ctb_02.jpg";
+	}
+	
+	function showErrorBook(userId,testId){
+		document.getElementById("paperId").value="";
+		document.getElementById('userId').value = userId;
+		document.getElementById("testId").value = testId;
+		document.forms[0].action = '/tqweb/report/StudentErrorBookAction.a';
+ 		document.forms[0].submit();
+	}
+
+	function subjectReport(paperId,
+ 							   subjectName,
+ 							   score,
+ 							   scoreTotal,
+ 							   levelId,
+ 							   levelName,
+ 							   userId,
+ 							   userType,
+ 							   name,
+ 							   userName,
+ 							   schoolId,
+ 							   schoolName,
+ 							   testId,
+ 							   className){
+ 		document.getElementById('paperId').value = paperId;
+ 		document.getElementById('subjectName').value = subjectName;
+ 		document.getElementById('score').value = score;
+ 		document.getElementById('scoreTotal').value = scoreTotal;
+ 		document.getElementById('levelId').value = levelId;
+ 		document.getElementById('levelName').value = levelName;
+ 		document.getElementById('userId').value = userId;
+ 		document.getElementById('userType').value = userType;
+ 		document.getElementById('name').value = name;
+ 		document.getElementById('userName').value = userName;
+ 		document.getElementById('schoolId').value = schoolId;
+ 		document.getElementById('schoolName').value = schoolName;
+ 		document.getElementById('testId').value = testId;
+ 		document.getElementById('className').value = className;
+ 		document.forms[0].action = '/tqweb/report/SubjectReportSmallPointsAction.a?showSubjectStudentReport';
+ 		document.forms[0].target = "_self";
+ 		document.forms[0].submit();
+ 	}
+	/* 修改显示等级的判断调取的接口 */
+	function subjectReport2(paperId,
+			   subjectName,
+			   score,
+			   scoreTotal,
+			   levelId,
+			   levelName,
+			   userId,
+			   userType,
+			   name,
+			   userName,
+			   schoolId,
+			   schoolName,
+			   testId,
+			   className,
+			   testScoreLevel){
+		document.getElementById('paperId').value = paperId;
+		document.getElementById('subjectName').value = subjectName;
+		document.getElementById('score').value = score;
+		document.getElementById('scoreTotal').value = scoreTotal;
+		document.getElementById('levelId').value = levelId;
+		document.getElementById('levelName').value = levelName;
+		document.getElementById('userId').value = userId;
+		document.getElementById('userType').value = userType;
+		document.getElementById('name').value = name;
+		document.getElementById('userName').value = userName;
+		document.getElementById('schoolId').value = schoolId;
+		document.getElementById('schoolName').value = schoolName;
+		document.getElementById('testId').value = testId;
+		document.getElementById('className').value = className;
+		document.getElementById('testScoreLevel').value = testScoreLevel;
+		document.forms[0].action = '/tqweb/report/SubjectReportSmallPointsAction.a?showSubjectStudentReport';
+		document.forms[0].target = "_self";
+		document.forms[0].submit();
+}
+ 	function showSendWord(levelId,
+ 							   levelName,
+ 							   userId,
+ 							   userType,
+ 							   name,
+ 							   userName,
+ 							   schoolId,
+ 							   schoolName,
+ 							   testId,
+ 							   className){
+ 							   
+ 		document.getElementById('levelId').value = levelId;
+ 		document.getElementById('levelName').value = levelName;
+ 		document.getElementById('userId').value = userId;
+ 		document.getElementById('userType').value = userType;
+ 		document.getElementById('name').value = name;
+ 		document.getElementById('userName').value = userName;
+ 		document.getElementById('schoolId').value = schoolId;
+ 		document.getElementById('schoolName').value = schoolName;
+ 		document.getElementById('testId').value = testId;
+ 		document.getElementById('className').value = className;
+ 		document.forms[0].action = '/tqweb/report/NewStudentReport.a?sendWord';
+ 		document.forms[0].target = "_self";
+ 		document.forms[0].submit();
+ 	}
+	function showStudentReport(levelId,
+ 							   levelName,
+ 							   userId,
+ 							   userType,
+ 							   name,
+ 							   userName,
+ 							   schoolId,
+ 							   schoolName,
+ 							   testId,
+ 							   className){
+ 		document.getElementById('levelId').value = levelId;
+ 		document.getElementById('levelName').value = levelName;
+ 		document.getElementById('userId').value = userId;
+ 		document.getElementById('userType').value = userType;
+ 		document.getElementById('name').value = name;
+ 		document.getElementById('userName').value = userName;
+ 		document.getElementById('schoolId').value = schoolId;
+ 		document.getElementById('schoolName').value = schoolName;
+ 		document.getElementById('testId').value = testId;
+ 		document.getElementById('className').value = className;
+ 		document.forms[0].action = '/tqweb/report/NewStudentReport.a?showStudentReport';
+ 		document.forms[0].target = "_self";
+ 		document.forms[0].submit();
+ 	}
+ 	
+ 	function showParentsFeedBack(levelId,
+ 							   	 levelName,
+ 							   	 userId,
+ 							   	 userType,
+ 							   	 name,
+ 							   	 userName,
+ 							   	 schoolId,
+ 							   	 schoolName,
+ 							   	 testId,
+ 							   	 className){
+ 		document.getElementById('levelId').value = levelId;
+ 		document.getElementById('levelName').value = levelName;
+ 		document.getElementById('userId').value = userId;
+ 		document.getElementById('userType').value = userType;
+ 		document.getElementById('name').value = name;
+ 		document.getElementById('userName').value = userName;
+ 		document.getElementById('schoolId').value = schoolId;
+ 		document.getElementById('schoolName').value = schoolName;
+ 		document.getElementById('testId').value = testId;
+ 		document.getElementById('className').value = className;
+ 		document.forms[0].action = '/tqweb/report/NewStudentReport.a?parentsFeedBack';
+ 		document.forms[0].target = "_self";
+ 		document.forms[0].submit();
+ 	}
+
+	function accessSdxJs(userId, userName, testId, score){
+		SelectUserUtil.accessSdx(userId, userName, testId, score, sdxMessage);
+	}
+	
+	function sdxMessage(data){
+		if(data.operatorSuccess){
+			if(window.confirm('您现在即将离开“星立方教育大数据分析平台”，前往“圣达信高考志愿填报推荐系统”！')){
+				 SelectUserUtil.insertUserTokenSdx(data.userId, data.token);
+                 window.open(data.sdxUrl);
+              }else{
+                 return false;
+             }
+		}else{
+			alert(data.errorReason);
+		}
+	}
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?15c5d610baca3e64e047944137bccafa";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+
+
+<div class="top">
+<div class="top_a">
+<div class="top_a_logo"><b>北京市西城职业学校（百万庄校区）</b>
+</div>
+<div class="top_a_help">
+
+
+<dt style="width:60px;">&nbsp;</dt>
+
+
+
+<dt><a href="/tqweb/useradmin/ChangePasswordAction.a"><img src="/tqweb/images/top_02.gif" border="0"/></a></dt>
+<dd></dd>
+<dt><a href="/tqweb/j_acegi_logout"><img src="/tqweb/images/top_03.gif" border="0" /></a></dt>
+
+
+</div>
+</div>
+</div>
+
+<!-- <form id="repForm" action="" method="post"> -->
+<input type="hidden" name="reportSubjectId" id="reportSubjectId" value="" />
+
+  
+ <script LANGUAGE="JavaScript">
+  	//显示
+	function show(o,obj){
+	  var m=document.getElementById(obj);
+	  m.style.left=getL(o);
+	  m.style.top=getT(o)+o.offsetHeight;
+	  m.style.visibility='';
+	}
+	//隐藏
+	function hide(obj){
+	  document.getElementById(obj).style.visibility='hidden';
+	}    
+	//取得左边的位移
+	function getL(e){
+	  var l=e.offsetLeft;
+	  while(e=e.offsetParent){
+	    l+=e.offsetLeft;
+	  }
+	  return l;
+	}
+	//取得顶部的位移
+	function getT(e){
+	  var t=e.offsetTop;
+	  while(e=e.offsetParent){
+	    t+=e.offsetTop;
+	  }
+	  return t;
+	}
+	function viewReport()
+	{
+		var xx = document.getElementById("test");
+		xx.submit();
+	}
+</script>
+  <div class="top_b_container">	
+  <div class="top_b">
+	<div class="lanmu">
+	<dt style="font-size:12px;">
+	
+		当前考试：2024-2025学年第二学期高二期中考试&nbsp;
+		（报告版本：v5 2025-04-30 15:36:53）
+		<a href="#" id="href_stat" class="lanmu1" onmouseover="show(this,'version_stat')" onmouseout="hide('version_stat')" style="font-size:12px;">版本说明</a>
+		
+		&nbsp;&nbsp;<a class="lanmu1" href="/tqweb/demo/MainAction.a?doShow=1"><font style="font-size=14px;" color="#FFFFFF">[查看历次考试分析报告]</font></a>
+	
+	<!-- #是否显示“查看学生学业成绩报告单”超链接，该超链接与[切换考试]同级，0 不显示、1显示 -->
+	
+    <table>
+    <tr><td>
+    <div id="version_stat" style="VISIBILITY:hidden;OVERFLOW: auto;POSITION:absolute;width:200px;background-color:#90EE90;">
+    	
+		
+			<table>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>报告版本: </strong>v5</td></tr>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>生成时间: </strong>2025-04-30 15:36:53</td></tr>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>版本说明: </strong>1</td></tr>
+			</table>
+		
+			<table>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>报告版本: </strong>v4</td></tr>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>生成时间: </strong>2025-04-30 13:52:05</td></tr>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>版本说明: </strong>1</td></tr>
+			</table>
+		
+			<table>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>报告版本: </strong>v3</td></tr>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>生成时间: </strong>2025-04-30 12:53:24</td></tr>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>版本说明: </strong>1</td></tr>
+			</table>
+		
+			<table>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>报告版本: </strong>v2</td></tr>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>生成时间: </strong>2025-04-30 10:53:16</td></tr>
+			<tr style="margin-left: 10px;margin-top: 8px;" height="15px;"><td><strong>版本说明: </strong>1</td></tr>
+			</table>
+		
+		
+     </div>
+     </td></tr>
+     </table>
+	</dt><!-- 加<span>控制三角图片 -->
+	<!-- 
+	<dd><img src="/tqweb/images/top_05.gif" /></dd>
+	<dt><a href="#" class="lanmu1">在线诊测</a></dt>
+	<dd><img src="/tqweb/images/top_05.gif" /></dd>
+	<dt><a href="#" class="lanmu1">我的错题本</a></dt> 
+	-->
+	</div>
+  </div>
+  </div>
+
+  <!--  以前UI  
+  <div id="menu">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="26"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="28" height="30"><img src="/tqweb/images/report_bg_menu_ico.gif" width="28" height="30"></td>
+              <td align="left" background="/tqweb/images/report_bg_menu_center.gif" nowrap="nowrap"><span class="font_reddark">当前考试：</span>2024-2025学年第二学期高二期中考试
+              &nbsp;&nbsp;<a href="/tqweb/demo/MainAction.a?doShow">[切换考试]===</a>
+              
+              </td>
+              <td width="21"><img src="/tqweb/images/report_bg_menu_right.gif" width="21" height="30"></td>
+            </tr>
+          </table></td>
+        <td width="460" align="left"><table border="0" cellspacing="0" cellpadding="1">
+            <tr>
+            	
+              	
+              	<!-- xx
+              	
+              		<td><a href="/tqweb/report/StudentReport.a?showStudentReport">学生报告单</a></td>
+              	
+              	 -->
+              	 <!-- 
+            </tr>
+          </table></td> 
+        <td width="16%"><table width="100%" border="0" cellspacing="0" cellpadding="1" style="display: none;">
+            <tr>
+              <td width="9"><img src="/tqweb/images/report_dot1.gif" width="9" height="9"></td>
+              <td><ul id="MenuBar1" class="MenuBarHorizontal">
+                  <li><a class="MenuBarItemSubmenu" href="#">历次考试成绩报告单</a>
+                    <ul>
+                    	<li><a href='/tqweb/demo/MainAction.a?doShow&schoolYearId=18' >2024-2025学年</a></li><li><a href='/tqweb/demo/MainAction.a?doShow&schoolYearId=15' >2021-2022学年</a></li><li><a href='/tqweb/demo/MainAction.a?doShow&schoolYearId=14' >2020-2021学年</a></li><li><a href='/tqweb/demo/MainAction.a?doShow&schoolYearId=13' >2019-2020学年</a></li><li><a href='/tqweb/demo/MainAction.a?doShow&schoolYearId=12' >2018-2019学年</a></li>
+
+                    </ul>
+                  </li>
+                </ul></td>
+            </tr>
+          </table></td>
+      </tr>
+    </table>
+  </div>
+   -->
+<script type="text/javascript">
+<!--
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgDown:"", imgRight:""});
+//-->
+</script>
+
+
+
+<div id="center_wu">
+	<div class="center">
+	<form action="/tqweb/report/SubjectReportSmallPointsAction.a" method="post">
+	<input type="hidden" id="paperId" name="paperId" value="" />
+	<input type="hidden" id="subjectName" name="subjectName" value="" />
+	<input type="hidden" id="score" name="score" value="" />
+	<input type="hidden" id="scoreTotal" name="scoreTotal" value="" />
+	<input type="hidden" id="levelId" name="levelId" value="" />
+	<input type="hidden" id="levelName" name="levelName" value="" />
+	<input type="hidden" id="userId" name="userId" value="" />
+	<input type="hidden" id="userType" name="userType" value="" />
+	<input type="hidden" id="name" name="name" value="" />
+	<input type="hidden" id="userName" name="userName" value="" />
+	<input type="hidden" id="schoolId" name="schoolId" value="" />
+	<input type="hidden" id="schoolName" name="schoolName" value="" />
+	<input type="hidden" id="testScoreLevel" name="testScoreLevel" value="" />
+	<input type="hidden" id="testId" name="testId" value="" />
+	<input type="hidden" id="className" name="className" value="" />
+	<input type="hidden" id="forFree" name="forFree" value="true" />
+	<input type="hidden" id="teacherUserId" name="teacherUserId" value="" />
+	<input type="hidden" id="teacherSubjectName" name="teacherSubjectName" value="" />
+	<input type="hidden" id="ifMaster" name="ifMaster" value="false" />
+	<input type="hidden" id="ifShowHeadBottom" name="ifShowHeadBottom" value="true" />
+	<input type="hidden" id="schoolIdStr" name="schoolIdStr" value="" />
+	</form>
+	
+<div align="right">
+	<table width="767" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tr>
+			<td>&nbsp;</td>
+			<td valign="top" bgcolor="#FFFFFF" align="center"><!--startprint-->
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td height="123">
+						<div align="center" class="title_style"><span class="STYLE1">
+						</span>2024-2025学年第二学期高二期中考试<br />
+						<span class="STYLE1">高二9班&nbsp;李宇宸</span>&nbsp;同学成绩单</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div style="padding: 0 30 0 30px;margin-top: 5px; width: auto;">
+								<div align="center">
+									<div style="width: 100%;height: auto;" align="center">
+								      <table border="0" cellpadding="0" cellspacing="0" class="table_line"  align="left">
+										<tr align="center" class="stu_rpt_content">
+											<td  align="center" bgcolor="#A8D4D7" class="br_line" width="80px;">科&nbsp;&nbsp;目</td>
+											
+												<td bgcolor="#C7DBDC" colspan="2" class="br_line" width="60px;" align="center">总分</td>
+											
+												<td bgcolor="#C7DBDC" colspan="2" class="br_line" width="60px;" align="center">语文</td>
+											
+												<td bgcolor="#C7DBDC" colspan="2" class="br_line" width="60px;" align="center">数学</td>
+											
+												<td bgcolor="#C7DBDC" colspan="2" class="br_line" width="60px;" align="center">英语</td>
+											
+												<td bgcolor="#C7DBDC" colspan="2" class="br_line" width="60px;" align="center">物理</td>
+											
+												<td bgcolor="#C7DBDC" colspan="2" class="br_line" width="60px;" align="center">化学</td>
+											
+												<td bgcolor="#C7DBDC" colspan="2" class="br_line" width="60px;" align="center">政治</td>
+											
+										</tr>
+										<tr align="center" class="stu_rpt_content">
+											<td bgcolor="#A8D4D7" class="br_line" >满&nbsp;&nbsp;分</td>
+											
+											<td align="right" class="br_line" style="border-right-width: 0px;">750</td>
+											<td class="br_line">&nbsp;</td>
+											
+											<td align="right" class="br_line" style="border-right-width: 0px;">150</td>
+											<td class="br_line">&nbsp;</td>
+											
+											<td align="right" class="br_line" style="border-right-width: 0px;">150</td>
+											<td class="br_line">&nbsp;</td>
+											
+											<td align="right" class="br_line" style="border-right-width: 0px;">150</td>
+											<td class="br_line">&nbsp;</td>
+											
+											<td align="right" class="br_line" style="border-right-width: 0px;">100</td>
+											<td class="br_line">&nbsp;</td>
+											
+											<td align="right" class="br_line" style="border-right-width: 0px;">100</td>
+											<td class="br_line">&nbsp;</td>
+											
+											<td align="right" class="br_line" style="border-right-width: 0px;">100</td>
+											<td class="br_line">&nbsp;</td>
+											
+										</tr>
+										<tr align="center" class="stu_rpt_content">
+											<td bgcolor="#A8D4D7" class="br_line">你的成绩</td>
+											
+											<td  align="right" class="br_line" style="border-right-width: 0px; font-weight: bold">
+												
+													
+														
+															294.5
+														
+														
+													
+													
+																				
+												
+												
+													
+																			
+											</td>
+											<td  class="br_line">&nbsp;</td>
+											
+											<td  align="right" class="br_line" style="border-right-width: 0px; font-weight: bold">
+												
+													
+														
+															106
+														
+														
+													
+													
+																				
+												
+												
+													
+																			
+											</td>
+											<td  class="br_line">&nbsp;</td>
+											
+											<td  align="right" class="br_line" style="border-right-width: 0px; font-weight: bold">
+												
+													
+														
+															66
+														
+														
+													
+													
+																				
+												
+												
+													
+																			
+											</td>
+											<td  class="br_line">&nbsp;</td>
+											
+											<td  align="right" class="br_line" style="border-right-width: 0px; font-weight: bold">
+												
+													
+														
+															52.5
+														
+														
+													
+													
+																				
+												
+												
+													
+																			
+											</td>
+											<td  class="br_line">&nbsp;</td>
+											
+											<td  align="right" class="br_line" style="border-right-width: 0px; font-weight: bold">
+																				
+												
+												
+													缺考
+																			
+											</td>
+											<td  class="br_line">&nbsp;</td>
+											
+											<td  align="right" class="br_line" style="border-right-width: 0px; font-weight: bold">
+																				
+												
+												
+													缺考
+																			
+											</td>
+											<td  class="br_line">&nbsp;</td>
+											
+											<td  align="right" class="br_line" style="border-right-width: 0px; font-weight: bold">
+												
+													
+														
+															70
+														
+														
+													
+													
+																				
+												
+												
+													
+																			
+											</td>
+											<td  class="br_line">&nbsp;</td>
+											
+										</tr>
+										
+											<tr align="center" class="stu_rpt_content">
+												<td bgcolor="#A8D4D7" class="br_line">班级排名</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													15
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													5
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													15
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													18
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													
+												
+												
+													缺考
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													
+												
+												
+													缺考
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													3
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+											</tr>
+											<tr align="center" class="stu_rpt_content">
+												<td bgcolor="#A8D4D7" class="br_line">年级排名</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													161
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													13
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													167
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													257
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													
+												
+												
+													缺考
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													
+												
+												
+													缺考
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+												<td  align="right" class="br_line" style="border-right-width: 0px;">
+													82
+												
+												
+													
+													
+												</td>
+												<td  class="br_line">&nbsp;</td>
+												
+											</tr>
+										
+									</table>
+								</div>
+								<br/>
+									</div>
+								</div>
+							</div>	
+						</td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+					
+						<tr>
+							<td style="padding-left:30px;">
+								
+	 							
+	 								<a href="#" onclick="viewReportTwo();">查看详细报告</a>
+	 							
+								<form id="testTwo" method="post" action="/tqweb/report/NewStudentReport.a?doShowStudentReport&test_id=107880"></form>
+								 
+							</td>
+						</tr>
+					
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>
+
+		
+			<div id="right_div" class="fk_right_sendWord">
+				<!-- 
+				<a href='javascript:showParentsFeedBack("","",4722525,,"","李宇宸",,"",107880,"高二9班");'><img src="/tqweb/images/ji_02.gif" border="0" width="60px;" height="65px;" onmouseover="fk_overcss(this)" onmouseout="fk_movecss(this)"/></a>
+				-->
+				
+					<a href="javascript:showErrorBook(4722525,107880);"><img src="/tqweb/images/ctb_02.jpg" border="0" width="60px;" height="65px;" onmouseover="ctb_overcss(this)" onmouseout="ctb_movecss(this)"/></a>
+				
+				<!-- 
+				
+				 -->
+			</div>
+		
+	</div>
+</div>
+<!-- </form> -->
+
+
+<form id="test" method="post" action="/tqweb/report/NewStudentReport.a?viewReoprt"></form>
+<div class="bottom">
+<div class="bottom_logo">
+<div class="bottom_logo_a">
+
+<img src="/tqweb/images/bottom_logo.png" width="124px"/>
+
+</div>
+<div class="bottom_lanmu">
+<div align="right">
+	
+	 	北京星立方云科技有限公司 版权所有 &nbsp;&nbsp;<br>v&nbsp;
+	
+	4.17.0.195-220325
+	</div>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>
